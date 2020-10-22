@@ -25,6 +25,14 @@ export const store = createStore({
       power: false,
     };
   },
+  getters: {
+    powerText: (state) => {
+      if (state.power) {
+        return "On";
+      }
+      return "Off";
+    },
+  },
   mutations: {
     powerOn(state) {
       state.power = true;
@@ -42,6 +50,7 @@ export const store = createStore({
     },
   },
 });
+
 
 ```
 
@@ -75,7 +84,12 @@ DisplayPower.vue
   <h1 :style="{ color: $store.state.power ? 'green' : 'red' }">
     Power: {{ $store.state.power }}
   </h1>
+  <small> or </small>
+  <h1 :style="{ color: $store.state.power ? 'green' : 'red' }">
+    Power: {{ $store.getters.powerText }}
+  </h1>
 </template>
+
 ```
 
 Counter.vue
